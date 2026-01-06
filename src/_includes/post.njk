@@ -1,13 +1,62 @@
-{% extends "base.njk" %}
+---
+layout: base
+---
 
-{% block content %}
-<article>
-  <h1>{{ title }}</h1>
+<article class="post">
+    {% if hero %}
+    <div class="hero">
+        <img src="{{ hero }}" alt="{{ title }}" class="hero-image">
+        <div class="hero-overlay">
+            <h1 class="hero-title">{{ title }}</h1>
+            <div class="hero-meta">
+                <time datetime="{{ date | date('YYYY-MM-DD') }}">
+                    <i class="far fa-calendar"></i> {{ date | date('MMMM d, YYYY') }}
+                </time>
+                {% if author %}
+                <span class="author"><i class="fas fa-user-edit"></i> {{ author }}</span>
+                {% endif %}
+                {% if readtime %}
+                <span class="read-time"><i class="far fa-clock"></i> {{ readtime }} min read</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
-  {% if hero %}
-    <img src="{{ hero }}" alt="">
-  {% endif %}
+    <div class="post-content">
+        {{ content | safe }}
+    </div>
 
-  {{ content | safe }}
+    {% if tags %}
+    <div class="post-tags-section">
+        <h3>Tags</h3>
+        <div class="post-tags">
+            {% for tag in tags %}
+            <a href="/tags/{{ tag | slug }}/" class="tag">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="post-navigation">
+        {% if collections.previousPost %}
+        <a href="{{ collections.previousPost.url }}" class="nav-link prev">
+            <i class="fas fa-arrow-left"></i>
+            <div>
+                <span>Previous</span>
+                <h4>{{ collections.previousPost.data.title }}</h4>
+            </div>
+        </a>
+        {% endif %}
+        
+        {% if collections.nextPost %}
+        <a href="{{ collections.nextPost.url }}" class="nav-link next">
+            <div>
+                <span>Next</span>
+                <h4>{{ collections.nextPost.data.title }}</h4>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+        {% endif %}
+    </div>
 </article>
-{% endblock %}
