@@ -9,14 +9,14 @@ layout: base
         <div class="hero-overlay">
             <h1 class="hero-title">{{ title }}</h1>
             <div class="hero-meta">
-                <time datetime="{{ date | date('YYYY-MM-DD') }}">
-                    <i class="far fa-calendar"></i> {{ date | date('MMMM d, YYYY') }}
+                <time datetime="{{ date | isoDate }}">
+                    <i class="far fa-calendar"></i> {{ date | shortDate }}
                 </time>
                 {% if author %}
                 <span class="author"><i class="fas fa-user-edit"></i> {{ author }}</span>
                 {% endif %}
-                {% if readtime %}
-                <span class="read-time"><i class="far fa-clock"></i> {{ readtime }} min read</span>
+                {% if body %}
+                <span class="read-time"><i class="far fa-clock"></i> {{ body | readtime }} min read</span>
                 {% endif %}
             </div>
         </div>
@@ -37,26 +37,4 @@ layout: base
         </div>
     </div>
     {% endif %}
-
-    <div class="post-navigation">
-        {% if collections.previousPost %}
-        <a href="{{ collections.previousPost.url }}" class="nav-link prev">
-            <i class="fas fa-arrow-left"></i>
-            <div>
-                <span>Previous</span>
-                <h4>{{ collections.previousPost.data.title }}</h4>
-            </div>
-        </a>
-        {% endif %}
-        
-        {% if collections.nextPost %}
-        <a href="{{ collections.nextPost.url }}" class="nav-link next">
-            <div>
-                <span>Next</span>
-                <h4>{{ collections.nextPost.data.title }}</h4>
-            </div>
-            <i class="fas fa-arrow-right"></i>
-        </a>
-        {% endif %}
-    </div>
 </article>

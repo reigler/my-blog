@@ -3,7 +3,7 @@ title: "Welcome to My Blog"
 layout: base
 hero: /images/hero-default.jpg
 ---
-{% set postslist = collections.posts | reverse %}
+{% set postslist = collections.posts %}
 
 <section class="intro">
     <h1>Welcome to My Digital Garden</h1>
@@ -24,8 +24,8 @@ hero: /images/hero-default.jpg
                 </h3>
                 <p class="post-card-excerpt">{{ post.data.description or post.templateContent | striptags | truncate(150) }}</p>
                 <div class="post-card-meta">
-                    <time datetime="{{ post.date | date('YYYY-MM-DD') }}">
-                        <i class="far fa-calendar"></i> {{ post.date | date('MMMM d, YYYY') }}
+                    <time datetime="{{ post.date | isoDate }}">
+                        <i class="far fa-calendar"></i> {{ post.date | shortDate }}
                     </time>
                     {% if post.data.tags %}
                     <div class="post-tags">

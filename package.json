@@ -1,17 +1,14 @@
 {
   "name": "my-blog",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A blog built with 11ty and Decap CMS",
+  "main": ".eleventy.js",
   "scripts": {
-  "start": "eleventy --serve",
-  "build": "eleventy"
+    "build": "eleventy",
+    "start": "eleventy --serve --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "luxon": "^3.7.2"
   }
 }

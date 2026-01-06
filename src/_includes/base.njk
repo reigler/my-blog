@@ -47,8 +47,8 @@
                     <h1 class="hero-title">{{ title }}</h1>
                     {% if date %}
                     <div class="hero-meta">
-                        <time datetime="{{ date | date('YYYY-MM-DD') }}">
-                            <i class="far fa-calendar"></i> {{ date | date('MMMM d, YYYY') }}
+                        <time datetime="{{ date | isoDate }}">
+                            <i class="far fa-calendar"></i> {{ date | shortDate }}
                         </time>
                         {% if author %}
                         <span class="author"><i class="fas fa-user-edit"></i> {{ author }}</span>
@@ -92,7 +92,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>© {{ "now" | date("YYYY") }} My Blog. Built with <a href="https://www.11ty.dev/" target="_blank">11ty</a> & <a href="https://decapcms.org/" target="_blank">Decap CMS</a>.</p>
+                <p>© {{ "now" | getCurrentYear }} My Blog. Built with <a href="https://www.11ty.dev/" target="_blank">11ty</a> & <a href="https://decapcms.org/" target="_blank">Decap CMS</a>.</p>
             </div>
         </footer>
     </div>
@@ -100,7 +100,7 @@
     <!-- Optional JavaScript -->
     <script>
         // Simple search functionality
-        document.querySelector('.search-btn').addEventListener('click', () => {
+        document.querySelector('.search-btn')?.addEventListener('click', () => {
             const query = prompt('Enter search terms:');
             if (query) {
                 window.location.href = `/search/?q=${encodeURIComponent(query)}`;
